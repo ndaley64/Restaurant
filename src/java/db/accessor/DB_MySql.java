@@ -29,7 +29,7 @@ public class DB_MySql implements DBAccessor{
         String driverClassName = "com.mysql.jdbc.Driver";
         String url = "jdbc:mysql://localhost:3306/restaurant";
         String userName = "root";
-        String password = "1337passfort";
+        String password = "admin";
 
         try {
                   Class.forName (driverClassName);
@@ -94,6 +94,13 @@ public class DB_MySql implements DBAccessor{
             System.err.println("SQL Exception in DB_MySql!");
         }catch(Exception e){
             System.err.println("Exception in DB_MySql!");
+        }
+        
+        for(Map m : Records){
+            System.out.print(m.get("item_id")+ "/");
+            System.out.print(m.get("item_name")+ "/");
+            System.out.print(m.get("item_price"));
+            System.out.println("");
         }
         
     }
