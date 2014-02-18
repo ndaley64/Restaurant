@@ -21,32 +21,32 @@ public class MenuItem {
     }
 
     public MenuItem(String item_id, String item_name, String item_price) {
-        this.setItem_id(item_id);
-        this.setItem_name(item_name);
-        this.setItem_price(item_price);
+        this.setItemID(item_id);
+        this.setItemName(item_name);
+        this.setItemPrice(item_price);
     }
 
-    public String getItem_id() {
+    public String getItemID() {
         return item_id;
     }
 
-    public void setItem_id(String item_id) {
+    public void setItemID(String item_id) {
         this.item_id = item_id;
     }
 
-    public String getItem_name() {
+    public String getItemName() {
         return item_name;
     }
 
-    public void setItem_name(String item_name) {
+    public void setItemName(String item_name) {
         this.item_name = item_name;
     }
 
-    public String getItem_price() {
+    public String getItemPrice() {
         return item_price;
     }
 
-    public void setItem_price(String item_price) {
+    public void setItemPrice(String item_price) {
         this.item_price = item_price;
     }
 

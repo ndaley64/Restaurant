@@ -29,7 +29,7 @@ public class DB_MySql implements DBAccessor{
         String driverClassName = "com.mysql.jdbc.Driver";
         String url = "jdbc:mysql://localhost:3306/restaurant";
         String userName = "root";
-        String password = "admin";
+        String password = "1337passfort";
 
         try {
                   Class.forName (driverClassName);
