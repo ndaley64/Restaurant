@@ -6,6 +6,7 @@
 
 package controller;
 
+import DAO.DAO;
 import DAO.MenuItem;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -39,7 +40,9 @@ public class FrontController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        OrderService os = new OrderService();
+        String sDao = this.getServletContext().getInitParameter("menuDao");
+        
+        OrderService os = new OrderService(sDao);
         
         List<MenuItem> menu = os.getAllMenuItems();
         

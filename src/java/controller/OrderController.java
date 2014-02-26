@@ -6,13 +6,17 @@
 
 package controller;
 
+import DAO.MenuItem;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.OrderService;
 
 /**
@@ -34,13 +38,32 @@ public class OrderController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        String name = request.getParameter("firstName");
-
-        OrderService ws = new OrderService();
-        String welcome = ws.getWelcomeMessage(name);
-
-        request.setAttribute("welcomeMessage", welcome);
+        
+        HttpSession session = request.getSession();
+        Object tempOrderService = session.getAttribute("orderService");
+        
+        String[] orderItems = request.getParameterValues("menuItems");
+        
+        OrderService orderService = null;
+        if(tempOrderService == null){
+            orderService = new OrderService(this.getServletContext().getInitParameter("orderDao"));
+        }else{
+            orderService = (OrderService)tempOrderService;
+        }
+        List<MenuItem> menu = orderService.getAllMenuItems();
+        
+        List<MenuItem> orderList = new ArrayList<MenuItem>();
+        
+        for (String item : orderItems) {
+            for (MenuItem menuItem : menu) {
+                if (menuItem.getItemName().equals(item)) {
+                    orderList.add(menuItem);
+                    break;
+                }
+            }
+        }
+        
+        request.setAttribute("order", orderList);
 
         RequestDispatcher view
                 = request.getRequestDispatcher(RESULT);

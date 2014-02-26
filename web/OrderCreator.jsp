@@ -9,6 +9,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
 	List<MenuItem> menu = (List<MenuItem>) request.getAttribute("menu");
+        List<MenuItem> orderList = (List<MenuItem>) request.getAttribute("orderList");
 %>
 <!DOCTYPE html>
 <html>
